@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Praveen Kumar | World-Class Web Developer</title>
+    <meta name="description" content="Praveen Kumar is a professional web developer specializing in modern, high-performance, scalable web applications." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://praveenkumar.dev/" />
+    <meta property="og:title" content="Praveen Kumar | World-Class Web Developer" />
+    <meta property="og:description" content="Praveen Kumar is a professional web developer specializing in modern, high-performance, scalable web applications." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&h=630&q=80" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://praveenkumar.dev/" />
+    <meta property="twitter:title" content="Praveen Kumar | World-Class Web Developer" />
+    <meta property="twitter:description" content="Praveen Kumar is a professional web developer specializing in modern, high-performance, scalable web applications." />
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&h=630&q=80" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#050505", /* Deep Black */
+              accent: "#ffffff", /* White for high contrast */
+              secondary_accent: "#a3a3a3", /* Grey for subtle details */
+              text: "#e5e5e5",
+              dark: "#000000",
+              card: "#0a0a0a" /* Very dark grey for cards */
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              heading: ['Poppins', 'sans-serif'],
+            },
+            animation: {
+              'blob': 'blob 10s infinite',
+              'gradient-x': 'gradient-x 15s ease infinite',
+            },
+            keyframes: {
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              'gradient-x': {
+                '0%, 100%': {
+                    'background-size': '200% 200%',
+                    'background-position': 'left center'
+                },
+                '50%': {
+                    'background-size': '200% 200%',
+                    'background-position': 'right center'
+                },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #050505;
+        color: #e5e5e5;
+        overflow-x: hidden;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #262626; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #404040; 
+      }
+      
+      .text-gradient {
+        background: linear-gradient(to right, #ffffff, #a3a3a3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      .gradient-mask-l {
+        mask-image: linear-gradient(to right, transparent, black 20%);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "gsap/": "https://esm.sh/gsap@^3.14.2/",
+    "gsap": "https://esm.sh/gsap@^3.14.2"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
