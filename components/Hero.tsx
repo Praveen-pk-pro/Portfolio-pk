@@ -91,26 +91,26 @@ const Hero: React.FC = () => {
             <div className="hero-cta flex flex-wrap gap-4">
               <a 
                 href="#projects" 
-                className="group flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all transform hover:scale-105"
+                className="group flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all transform hover:scale-105 active:scale-95"
               >
                 View My Work <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a 
                 href="#contact" 
-                className="flex items-center gap-2 px-6 py-3 bg-transparent border border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all"
+                className="flex items-center gap-2 px-6 py-3 bg-transparent border border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all hover:scale-105 active:scale-95"
               >
                 Hire Me
               </a>
             </div>
 
             <div className="flex gap-6 hero-social pt-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 active:scale-95">
                 <Github size={22} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 active:scale-95">
                 <Linkedin size={22} />
               </a>
-              <a href="mailto:dummy@email.com" className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110">
+              <a href="mailto:dummy@email.com" className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 active:scale-95">
                 <Mail size={22} />
               </a>
             </div>

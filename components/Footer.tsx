@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     <footer className="py-8 bg-dark border-t border-white/5 text-center">
       <p className="text-gray-600 text-sm">
         © {new Date().getFullYear()} Praveen Kumar. All rights reserved. <br className="md:hidden" />
-        Designed & Built with <span className="text-accent">♥</span> using React & Tailwind.
+        Designed & Built with <span className="text-accent inline-block transition-transform duration-300 hover:scale-125 cursor-pointer">♥</span> using React & Tailwind.
       </p>
     </footer>
   );

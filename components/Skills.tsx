@@ -34,7 +34,7 @@ const Skills: React.FC = () => {
                   {category.skills.map((skill) => (
                     <span 
                       key={skill}
-                      className="px-3 py-1 bg-primary border border-white/10 rounded-full text-sm text-gray-300 hover:text-white hover:border-accent/50 transition-all"
+                      className="px-3 py-1 bg-primary border border-white/10 rounded-full text-sm text-gray-300 hover:text-white hover:border-accent/50 transition-all hover:scale-105 hover:bg-accent/5 cursor-default"
                     >
                       {skill}
                     </span>

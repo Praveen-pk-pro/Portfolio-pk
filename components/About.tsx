@@ -53,7 +53,7 @@ const About: React.FC = () => {
                 <h3 className="text-xl font-bold text-white mb-4">Key Highlights</h3>
                 <ul className="space-y-3">
                   {['Problem Solver', 'Clean Code Advocate', 'Performance Obsessed', 'Fast Learner'].map((item, i) => (
-                    <li key={i} className="flex items-center text-gray-400">
+                    <li key={i} className="flex items-center text-gray-400 hover:text-white hover:translate-x-2 transition-all duration-300 cursor-default">
                       <span className="w-2 h-2 bg-accent rounded-full mr-3" />
                       {item}
                     </li>

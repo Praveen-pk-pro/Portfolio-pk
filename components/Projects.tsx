@@ -118,12 +118,12 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
         <div className="flex items-center gap-4 mt-auto">
           {project.github && (
-            <a href={project.github} className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+            <a href={project.github} className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-all hover:scale-105 active:scale-95 inline-flex">
               <Github size={16} /> Code
             </a>
           )}
           {project.link && (
-            <a href={project.link} className="flex items-center gap-2 text-sm text-accent hover:text-white transition-colors ml-auto">
+            <a href={project.link} className="flex items-center gap-2 text-sm text-accent hover:text-white transition-all ml-auto hover:scale-105 active:scale-95 inline-flex">
               Live Demo <ExternalLink size={16} />
             </a>
           )}
@@ -153,7 +153,7 @@ const Projects: React.FC = () => {
                   A showcase of projects that demonstrate my ability to solve complex problems and deliver high-quality digital products.
                 </p>
               </div>
-              <a href="#" className="hidden md:flex items-center gap-2 text-accent hover:text-white transition-colors mt-4 md:mt-0 font-medium group">
+              <a href="#" className="hidden md:flex items-center gap-2 text-accent hover:text-white transition-all mt-4 md:mt-0 font-medium group hover:scale-105 active:scale-95">
                 View All Projects <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -172,7 +172,7 @@ const Projects: React.FC = () => {
           </motion.div>
 
           <div className="md:hidden mt-10 text-center">
-            <a href="#" className="inline-flex items-center gap-2 text-accent hover:text-white transition-colors font-medium">
+            <a href="#" className="inline-flex items-center gap-2 text-accent hover:text-white transition-all font-medium hover:scale-105 active:scale-95">
               View All Projects <ExternalLink size={16} />
             </a>
           </div>

@@ -32,10 +32,10 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-8 md:px-12 flex items-center justify-between">
         {/* Logo - Matches "CKP" top left */}
         <div 
-          className="cursor-pointer z-50"
+          className="cursor-pointer z-50 group"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <span className="font-heading font-bold text-2xl tracking-tighter text-white">
+          <span className="font-heading font-bold text-2xl tracking-tighter text-white inline-block transform group-hover:scale-110 transition-transform duration-300">
             PK<span className="text-secondary_accent">.</span>
           </span>
         </div>
@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
             <button
               key={link.name}
               onClick={() => scrollToSection(link.href)}
-              className="text-xs uppercase tracking-widest font-medium text-gray-400 hover:text-white transition-colors"
+              className="text-xs uppercase tracking-widest font-medium text-gray-400 hover:text-white transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[1px] after:bottom-[-4px] after:left-0 after:bg-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
             >
               {link.name}
             </button>
@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-white z-50"
+          className="md:hidden text-white z-50 hover:scale-110 transition-transform active:scale-95"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}

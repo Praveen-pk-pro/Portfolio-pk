@@ -59,12 +59,12 @@ const Contact: React.FC = () => {
             </p>
             
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-accent">
-                <Mail size={20} />
+              <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-accent group hover:bg-white/10 transition-colors">
+                <Mail size={20} className="group-hover:scale-110 transition-transform" />
               </div>
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wider">Email Me</p>
-                <a href="mailto:contact@praveenkumar.dev" className="text-white font-medium hover:text-accent transition-colors">contact@praveenkumar.dev</a>
+                <a href="mailto:contact@praveenkumar.dev" className="text-white font-medium hover:text-accent transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">contact@praveenkumar.dev</a>
               </div>
             </div>
 
@@ -99,7 +99,7 @@ const Contact: React.FC = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-primary/50 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all"
+                  className="w-full px-4 py-3 bg-primary/50 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 hover:border-white/20 transition-all duration-300"
                   placeholder="John Doe"
                 />
               </div>
@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-primary/50 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all"
+                  className="w-full px-4 py-3 bg-primary/50 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 hover:border-white/20 transition-all duration-300"
                   placeholder="john@example.com"
                 />
               </div>
@@ -127,7 +127,7 @@ const Contact: React.FC = () => {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-primary/50 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all resize-none"
+                  className="w-full px-4 py-3 bg-primary/50 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 hover:border-white/20 transition-all duration-300 resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -135,9 +135,9 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={status === 'submitting' || status === 'success'}
-                className={`w-full flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-lg transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(255,255,255,0.1)] 
+                className={`w-full flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-lg transition-all transform hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)] 
                   ${status === 'success' 
-                    ? 'bg-green-500/20 text-green-400 cursor-default' 
+                    ? 'bg-green-500/20 text-green-400 cursor-default hover:scale-100 active:scale-100' 
                     : 'bg-accent text-primary hover:bg-white'
                   } disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none`}
               >
