@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Play } from 'lucide-react';
@@ -30,6 +31,8 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  // Casting motion.div to any to bypass environment-specific type inference issues with framer-motion props
+  const MotionDiv = motion.div as any;
 
   useEffect(() => {
     // Play video when in view (Scroll effect)
@@ -58,7 +61,8 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   }, [project.video]);
 
   return (
-    <motion.div
+    // Fixed: Using MotionDiv (any) to resolve Property 'variants' does not exist error on line 63
+    <MotionDiv
       variants={cardVariants}
       ref={containerRef}
       className="group relative bg-card rounded-2xl overflow-hidden border border-white/5 hover:border-accent/30 transition-all duration-300 flex flex-col h-full hover:shadow-2xl hover:shadow-accent/5"
@@ -118,27 +122,31 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
         <div className="flex items-center gap-4 mt-auto">
           {project.github && (
-            <a href={project.github} className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-all hover:scale-105 active:scale-95 inline-flex">
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-all hover:scale-105 active:scale-95 inline-flex">
               <Github size={16} /> Code
             </a>
           )}
           {project.link && (
-            <a href={project.link} className="flex items-center gap-2 text-sm text-accent hover:text-white transition-all ml-auto hover:scale-105 active:scale-95 inline-flex">
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-accent hover:text-white transition-all ml-auto hover:scale-105 active:scale-95 inline-flex">
               Live Demo <ExternalLink size={16} />
             </a>
           )}
         </div>
       </div>
-    </motion.div>
+    </MotionDiv>
   );
 };
 
 const Projects: React.FC = () => {
+  // Casting motion.div to any to bypass environment-specific type inference issues with framer-motion props
+  const MotionDiv = motion.div as any;
+
   return (
     <section id="projects" className="py-20 md:py-24 bg-dark relative">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          <motion.div
+          {/* Fixed: Using MotionDiv (any) to resolve Property 'initial' does not exist error on line 143 */}
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -153,13 +161,19 @@ const Projects: React.FC = () => {
                   A showcase of projects that demonstrate my ability to solve complex problems and deliver high-quality digital products.
                 </p>
               </div>
-              <a href="#" className="hidden md:flex items-center gap-2 text-accent hover:text-white transition-all mt-4 md:mt-0 font-medium group hover:scale-105 active:scale-95">
+              <a 
+                href="https://github.com/Praveen-pk-pro/?tab=repositories" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hidden md:flex items-center gap-2 text-accent hover:text-white transition-all mt-4 md:mt-0 font-medium group hover:scale-105 active:scale-95"
+              >
                 View All Projects <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
-          </motion.div>
+          </MotionDiv>
 
-          <motion.div 
+          {/* Fixed: Using MotionDiv (any) to resolve Property 'variants' does not exist error on line 169 */}
+          <MotionDiv 
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -169,10 +183,15 @@ const Projects: React.FC = () => {
             {PROJECTS.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
-          </motion.div>
+          </MotionDiv>
 
           <div className="md:hidden mt-10 text-center">
-            <a href="#" className="inline-flex items-center gap-2 text-accent hover:text-white transition-all font-medium hover:scale-105 active:scale-95">
+            <a 
+              href="https://github.com/Praveen-pk-pro/?tab=repositories" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-accent hover:text-white transition-all font-medium hover:scale-105 active:scale-95"
+            >
               View All Projects <ExternalLink size={16} />
             </a>
           </div>

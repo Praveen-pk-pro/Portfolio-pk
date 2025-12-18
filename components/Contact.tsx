@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Twitter, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { Mail, Linkedin, Github, Send, CheckCircle, Loader2 } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,25 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const sectionRef = useRef<HTMLElement>(null);
+  const spotlightRef = useRef<HTMLDivElement>(null);
+  
+  const MotionDiv = motion.div as any;
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!sectionRef.current || !spotlightRef.current) return;
+      
+      const rect = sectionRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      spotlightRef.current.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(255,255,255,0.06), transparent 80%)`;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -21,11 +41,11 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setStatus('submitting');
     
-    // Simulate API call/Network delay
+    // Simulate a network delay for a premium feel
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Log form data to console as requested
-    console.log('Form Submission Data:', formData);
+    // Log data for developer visibility while not actually triggering mailto
+    console.log('Form Submission (Simulated):', formData);
     
     setStatus('success');
     setFormData({ name: '', email: '', message: '' });
@@ -35,15 +55,23 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-primary relative overflow-hidden">
-      {/* Glow Effect */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-full bg-accent/5 blur-[100px] pointer-events-none" />
+    <section 
+      id="contact" 
+      ref={sectionRef}
+      className="py-24 bg-primary relative overflow-hidden"
+    >
+      {/* Interactive Grid & Spotlight */}
+      <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+      <div ref={spotlightRef} className="absolute inset-0 pointer-events-none transition-opacity duration-300" />
+      
+      {/* Decorative Blur Orbs */}
+      <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-600/10 rounded-full blur-[100px] animate-pulse-slow" />
+      <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] animate-pulse-slow" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
           
-          {/* Text Content */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -64,30 +92,26 @@ const Contact: React.FC = () => {
               </div>
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wider">Email Me</p>
-                <a href="mailto:contact@praveenkumar.dev" className="text-white font-medium hover:text-accent transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">contact@praveenkumar.dev</a>
+                <a href="mailto:pkpraveen83441234@gmail.com" className="text-white font-medium hover:text-accent transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">pkpraveen83441234@gmail.com</a>
               </div>
             </div>
 
             <div className="flex gap-4">
-              <a href="#" className="text-gray-500 hover:text-white transition-colors p-3 bg-white/5 rounded-full hover:bg-white/10 hover:scale-110 transform duration-300">
+              <a href="https://github.com/Praveen-pk-pro/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors p-3 bg-white/5 rounded-full hover:bg-white/10 hover:scale-110 transform duration-300">
                 <Github size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-white transition-colors p-3 bg-white/5 rounded-full hover:bg-white/10 hover:scale-110 transform duration-300">
+              <a href="https://www.linkedin.com/in/praveen-kumar-06ace/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors p-3 bg-white/5 rounded-full hover:bg-white/10 hover:scale-110 transform duration-300">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-white transition-colors p-3 bg-white/5 rounded-full hover:bg-white/10 hover:scale-110 transform duration-300">
-                <Twitter size={20} />
-              </a>
             </div>
-          </motion.div>
+          </MotionDiv>
 
-          {/* Form */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-card p-6 md:p-8 rounded-2xl border border-white/5 shadow-xl relative backdrop-blur-sm"
+            className="bg-card/40 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl relative backdrop-blur-xl"
           >
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
@@ -99,7 +123,7 @@ const Contact: React.FC = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-primary/50 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 hover:border-white/20 transition-all duration-300"
+                  className="w-full px-4 py-3 bg-primary/30 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 hover:border-white/20 transition-all duration-300"
                   placeholder="John Doe"
                 />
               </div>
@@ -113,7 +137,7 @@ const Contact: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-primary/50 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 hover:border-white/20 transition-all duration-300"
+                  className="w-full px-4 py-3 bg-primary/30 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 hover:border-white/20 transition-all duration-300"
                   placeholder="john@example.com"
                 />
               </div>
@@ -127,7 +151,7 @@ const Contact: React.FC = () => {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-primary/50 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 hover:border-white/20 transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 bg-primary/30 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 hover:border-white/20 transition-all duration-300 resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -135,16 +159,16 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={status === 'submitting' || status === 'success'}
-                className={`w-full flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-lg transition-all transform hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)] 
+                className={`w-full flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-lg transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg
                   ${status === 'success' 
-                    ? 'bg-green-500/20 text-green-400 cursor-default hover:scale-100 active:scale-100' 
+                    ? 'bg-green-500/20 text-green-400 cursor-default border border-green-500/30' 
                     : 'bg-accent text-primary hover:bg-white'
-                  } disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none`}
+                  } disabled:opacity-70 disabled:cursor-not-allowed`}
               >
                 {status === 'submitting' ? (
                   <>
                     <Loader2 size={20} className="animate-spin" />
-                    Sending...
+                    Sending Message...
                   </>
                 ) : status === 'success' ? (
                   <>
@@ -159,7 +183,7 @@ const Contact: React.FC = () => {
                 )}
               </button>
             </form>
-          </motion.div>
+          </MotionDiv>
         </div>
       </div>
     </section>

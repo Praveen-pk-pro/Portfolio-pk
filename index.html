@@ -1,22 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Praveen Kumar | World-Class Web Developer</title>
+    <title>Praveen Kumar | Software Engineer</title>
     <meta name="description" content="Praveen Kumar is a professional web developer specializing in modern, high-performance, scalable web applications." />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://praveenkumar.dev/" />
-    <meta property="og:title" content="Praveen Kumar | World-Class Web Developer" />
+    <meta property="og:title" content="Praveen Kumar | Software Engineer" />
     <meta property="og:description" content="Praveen Kumar is a professional web developer specializing in modern, high-performance, scalable web applications." />
     <meta property="og:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&h=630&q=80" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://praveenkumar.dev/" />
-    <meta property="twitter:title" content="Praveen Kumar | World-Class Web Developer" />
+    <meta property="twitter:title" content="Praveen Kumar | Software Engineer" />
     <meta property="twitter:description" content="Praveen Kumar is a professional web developer specializing in modern, high-performance, scalable web applications." />
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&h=630&q=80" />
 
@@ -29,12 +30,12 @@
         theme: {
           extend: {
             colors: {
-              primary: "#050505", /* Deep Black */
-              accent: "#ffffff", /* White for high contrast */
-              secondary_accent: "#a3a3a3", /* Grey for subtle details */
+              primary: "#050505",
+              accent: "#ffffff",
+              secondary_accent: "#a3a3a3",
               text: "#e5e5e5",
               dark: "#000000",
-              card: "#0a0a0a" /* Very dark grey for cards */
+              card: "#0a0a0a"
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
@@ -43,6 +44,7 @@
             animation: {
               'blob': 'blob 10s infinite',
               'gradient-x': 'gradient-x 15s ease infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
               blob: {
@@ -72,7 +74,6 @@
         color: #e5e5e5;
         overflow-x: hidden;
       }
-      /* Custom scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -92,10 +93,19 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-      
-      .gradient-mask-l {
-        mask-image: linear-gradient(to right, transparent, black 20%);
-        -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+
+      /* Animated Grid Pattern */
+      .grid-pattern {
+        background-size: 40px 40px;
+        background-image: 
+          linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      }
+
+      .floating-orb {
+        filter: blur(80px);
+        opacity: 0.15;
+        pointer-events: none;
       }
     </style>
   <script type="importmap">

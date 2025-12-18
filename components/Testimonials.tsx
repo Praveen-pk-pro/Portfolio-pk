@@ -1,9 +1,13 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 import { TESTIMONIALS } from '../constants';
 
 const Testimonials: React.FC = () => {
+  // Casting motion.div to any to bypass environment-specific type inference issues with framer-motion props
+  const MotionDiv = motion.div as any;
+
   return (
     <section id="testimonials" className="py-24 bg-dark">
       <div className="container mx-auto px-6">
@@ -14,7 +18,8 @@ const Testimonials: React.FC = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             {TESTIMONIALS.map((t, idx) => (
-              <motion.div
+              // Fixed: Using MotionDiv (any) to resolve Property 'initial' does not exist error on line 19
+              <MotionDiv
                 key={t.id}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -33,7 +38,7 @@ const Testimonials: React.FC = () => {
                     <p className="text-sm text-gray-500">{t.role}, {t.company}</p>
                   </div>
                 </div>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
         </div>
