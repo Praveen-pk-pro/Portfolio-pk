@@ -20,9 +20,23 @@ const Navbar: React.FC = () => {
 
   const scrollToSection = (href: string) => {
     setIsOpen(false);
+    
+    // For "top" or logo clicks
+    if (href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navbarHeight = scrolled ? 72 : 96; // Adjust based on the padding in the nav classes
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -33,17 +47,17 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="container mx-auto px-8 md:px-12 flex items-center justify-between">
-        {/* Logo - Matches "CKP" top left */}
+        {/* Logo - Smooth scroll to top */}
         <div 
           className="cursor-pointer z-50 group"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => scrollToSection('#')}
         >
           <span className="font-heading font-bold text-2xl tracking-tighter text-white inline-block transform group-hover:scale-110 transition-transform duration-300">
             PK<span className="text-secondary_accent">.</span>
           </span>
         </div>
 
-        {/* Desktop Menu - Matches "Portfolio About..." top right */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-10">
           {NAV_LINKS.map((link) => (
             <button
@@ -54,9 +68,6 @@ const Navbar: React.FC = () => {
               {link.name}
             </button>
           ))}
-          <div className="flex gap-4 ml-4">
-             {/* Social placeholders if needed, similar to ref image */}
-          </div>
         </div>
 
         {/* Mobile Toggle */}
@@ -71,12 +82,11 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          // Fixed: Using MotionDiv (any) to resolve Property 'initial' does not exist error on line 72
           <MotionDiv
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 bg-primary z-40 flex flex-col items-center justify-center gap-8"
           >
             {NAV_LINKS.map((link) => (
               <button

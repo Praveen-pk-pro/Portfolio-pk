@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { TECH_ICONS } from '../constants';
 
@@ -9,18 +10,21 @@ const TechSphere: React.FC = () => {
   const [radius, setRadius] = useState(180);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
-  // State for rotation and physics
+  // Physics and rotation state
   const rotation = useRef({ x: 0, y: 0 });
-  const velocity = useRef({ x: 0, y: 0 }); // Current velocity
+  const velocity = useRef({ x: 0, y: 0 });
   const mouse = useRef({ x: 0, y: 0 });
   const scrollSpeed = useRef(0);
   
-  // Base configuration
+  // Per-icon smoothed scale state for fluid hover transitions
+  const iconScales = useRef<number[]>(new Array(TECH_ICONS.length).fill(1));
+  
+  // Animation config
   const baseSpeed = 0.002;
-  const friction = 0.05; // How quickly it follows the mouse
+  const friction = 0.05;
+  const scaleLerpFactor = 0.15; // Adjusts how "snappy" the hover scale feels
 
   useEffect(() => {
-    // Responsive radius logic
     const handleResize = () => {
       const width = window.innerWidth;
       if (width < 640) setRadius(130);
@@ -34,44 +38,27 @@ const TechSphere: React.FC = () => {
     const updateMouse = (clientX: number, clientY: number) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
-      
-      // Calculate center relative coordinates
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      // Normalize (-1 to 1) based on window size for smoother global control
       const x = (clientX - centerX) / (window.innerWidth / 2);
       const y = (clientY - centerY) / (window.innerHeight / 2);
       
       mouse.current.x = x;
       mouse.current.y = y;
-
-      // Container tilt effect (limit tilt)
       setTilt({ x: x * 5, y: -y * 5 });
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      updateMouse(e.clientX, e.clientY);
-    };
-
+    const handleMouseMove = (e: MouseEvent) => updateMouse(e.clientX, e.clientY);
     const handleTouchMove = (e: TouchEvent) => {
-      // Prevent default to avoid scrolling while interacting? 
-      // No, we want to allow scrolling, just capture movement for effect.
-      if (e.touches[0]) {
-        updateMouse(e.touches[0].clientX, e.touches[0].clientY);
-      }
+      if (e.touches[0]) updateMouse(e.touches[0].clientX, e.touches[0].clientY);
     };
-
-    const handleScroll = () => {
-      // Add a burst of speed on scroll
-      scrollSpeed.current = 0.03;
-    };
+    const handleScroll = () => { scrollSpeed.current = 0.03; };
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('scroll', handleScroll);
 
-    // Initialize positions (Golden Spiral / Fibonacci Sphere)
     const items = iconsRef.current;
     const count = TECH_ICONS.length; 
     const phi = Math.PI * (3 - Math.sqrt(5));
@@ -81,29 +68,23 @@ const TechSphere: React.FC = () => {
       const y = 1 - (i / (count - 1)) * 2;
       const radiusAtY = Math.sqrt(1 - y * y);
       const theta = phi * i;
-
       const x = Math.cos(theta) * radiusAtY;
       const z = Math.sin(theta) * radiusAtY;
 
-      // Store normalized coordinates on unit sphere
       item.dataset.nx = x.toString();
       item.dataset.ny = y.toString();
       item.dataset.nz = z.toString();
     });
 
     const animate = () => {
-      // Decelerate scroll speed smoothly
       scrollSpeed.current *= 0.95;
 
-      // Determine target velocity based on mouse position
       const targetVelX = mouse.current.y * 0.005; 
       const targetVelY = mouse.current.x * 0.005;
 
-      // Smoothly interpolate current velocity towards target velocity (Inertia)
       velocity.current.x += (targetVelX - velocity.current.x) * friction;
       velocity.current.y += (targetVelY - velocity.current.y) * friction;
 
-      // Apply Base Rotation + Mouse Influence + Scroll Influence
       rotation.current.x += velocity.current.x + scrollSpeed.current;
       rotation.current.y += velocity.current.y + baseSpeed + scrollSpeed.current;
 
@@ -119,29 +100,27 @@ const TechSphere: React.FC = () => {
         const ny = parseFloat(item.dataset.ny || '0');
         const nz = parseFloat(item.dataset.nz || '0');
 
-        // Apply rotation matrix
         const ry = ny * cx - nz * sx;
         const rz1 = ny * sx + nz * cx;
         const rx = nx * cy + rz1 * sy;
         const rz = -nx * sy + rz1 * cy;
 
-        // Apply radius
         const finalX = rx * radius;
         const finalY = ry * radius;
         const finalZ = rz * radius;
 
-        // Perspective projection
-        const scale = 400 / (400 - finalZ);
+        const perspectiveScale = 400 / (400 - finalZ);
         const alpha = (finalZ + radius) / (2 * radius);
         
-        // Hover scaling
-        const isItemHovered = hoveredIndex.current === i;
-        const scaleMultiplier = isItemHovered ? 1.3 : 1; // Reduced scale slightly for better performance
-        const finalScale = scale * scaleMultiplier;
+        // Smooth scaling logic using lerp
+        const targetScaleMultiplier = hoveredIndex.current === i ? 1.25 : 1;
+        iconScales.current[i] += (targetScaleMultiplier - iconScales.current[i]) * scaleLerpFactor;
+        
+        const finalScale = perspectiveScale * iconScales.current[i];
 
         item.style.transform = `translate3d(${finalX}px, ${finalY}px, ${finalZ}px) scale(${finalScale})`;
         item.style.opacity = Math.max(0.15, alpha + 0.1).toString();
-        item.style.zIndex = Math.floor(scale * 100).toString();
+        item.style.zIndex = Math.floor(perspectiveScale * 100).toString();
       });
 
       requestRef.current = requestAnimationFrame(animate);
@@ -179,7 +158,7 @@ const TechSphere: React.FC = () => {
             ref={(el) => { iconsRef.current[i] = el; }}
             onMouseEnter={() => { hoveredIndex.current = i; }}
             onMouseLeave={() => { hoveredIndex.current = null; }}
-            className="absolute top-1/2 left-1/2 -ml-6 -mt-6 w-10 h-10 md:w-14 md:h-14 flex items-center justify-center bg-white/5 backdrop-blur-sm rounded-full shadow-lg border border-white/10 p-2 md:p-3 hover:bg-white/20 hover:border-accent hover:shadow-[0_0_25px_rgba(56,189,248,0.4)] transition-all duration-300 cursor-pointer group"
+            className="absolute top-1/2 left-1/2 -ml-6 -mt-6 w-10 h-10 md:w-14 md:h-14 flex items-center justify-center bg-white/5 backdrop-blur-sm rounded-full shadow-lg border border-white/10 p-2 md:p-3 hover:bg-white/10 hover:border-accent hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-[border-color,background-color,box-shadow,opacity] duration-300 cursor-pointer group"
             style={{ willChange: 'transform, opacity' }}
           >
             <img 
@@ -189,7 +168,7 @@ const TechSphere: React.FC = () => {
             />
             
             {/* Tooltip Name */}
-            <div className="hidden md:block absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/80 text-white text-xs font-bold rounded border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap backdrop-blur-md transform translate-y-2 group-hover:translate-y-0 z-50">
+            <div className="hidden md:block absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/80 text-white text-[10px] font-bold rounded border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap backdrop-blur-md transform translate-y-2 group-hover:translate-y-0 z-50 uppercase tracking-widest">
               {tech.name}
             </div>
           </div>
