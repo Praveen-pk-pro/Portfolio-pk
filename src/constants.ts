@@ -64,6 +64,7 @@ export const PROJECTS: Project[] = [
     description: "A web app that gives farmers crop recommendations and weather-based insights, built under a no-agentic-AI constraint for the DesignXpo 1.0 event at Sree Sakthi Engineering College. Placed 3rd out of the intra-collegiate field.",
     tags: ["HTML", "CSS", "JavaScript"],
     image: "/img/won.png",
+    link: "https://design-event.vercel.app/",
     github: "https://github.com/Praveen-pk-pro/Design-event"
   }
 ];
