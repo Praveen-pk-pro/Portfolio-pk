@@ -33,3 +33,9 @@ export interface Achievement {
   type: 'Certificate' | 'Award' | 'Hackathon';
   image?: string;
 }
+
+export interface NavLink {
+  name: string;
+  href: string;
+  isExternal?: boolean;
+}

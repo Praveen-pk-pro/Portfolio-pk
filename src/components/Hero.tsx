@@ -2,7 +2,7 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import gsap from 'gsap';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowRight, Check } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowRight, Check, FileText } from 'lucide-react';
 import TechSphere from './TechSphere';
 
 const Hero: React.FC = () => {
@@ -179,6 +179,16 @@ const Hero: React.FC = () => {
                   className="flex items-center gap-2 px-6 py-3 bg-transparent border border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all hover:scale-105 active:scale-95"
                 >
                   Contact Me
+                </a>
+              </div>
+              <div className="hero-cta">
+                <a 
+                  href="/img/resume.pdf" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/40 text-cyan-300 font-semibold rounded-full hover:bg-cyan-500/30 hover:border-cyan-400 transition-all hover:scale-105 active:scale-95"
+                >
+                  <FileText size={18} /> View Resume
                 </a>
               </div>
             </div>

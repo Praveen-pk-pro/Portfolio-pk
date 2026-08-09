@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Send, CheckCircle, Loader2, Phone, MapPin } from 'lucide-react';
+import { Mail, Linkedin, Github, Send, CheckCircle, Loader2, Phone, MapPin, FileText } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -147,6 +147,23 @@ const Contact: React.FC = () => {
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-wider">Location</p>
                   <p className="text-white font-medium">Coimbatore, Tamil Nadu, India</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group hover:bg-cyan-500/20 transition-colors">
+                  <FileText size={20} className="group-hover:scale-110 transition-transform" />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Curriculum Vitae / Resume</p>
+                  <a 
+                    href="/img/resume.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-cyan-400 font-medium hover:underline transition-colors flex items-center gap-1"
+                  >
+                    View / Download Resume (PDF)
+                  </a>
                 </div>
               </div>
             </div>

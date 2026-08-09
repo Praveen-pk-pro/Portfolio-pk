@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { NAV_LINKS } from '../constants';
+import { NavLink } from '../types';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,16 +19,21 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
+  const handleNavClick = (link: NavLink | { name: string; href: string; isExternal?: boolean }) => {
     setIsOpen(false);
+
+    if (link.isExternal || link.href.endsWith('.pdf')) {
+      window.open(link.href, '_blank', 'noopener,noreferrer');
+      return;
+    }
     
     // For "top" or logo clicks
-    if (href === '#') {
+    if (link.href === '#') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
-    const element = document.querySelector(href);
+    const element = document.querySelector(link.href);
     if (element) {
       const navbarHeight = scrolled ? 72 : 96; // Adjust based on the padding in the nav classes
       const elementPosition = element.getBoundingClientRect().top;
@@ -50,7 +56,7 @@ const Navbar: React.FC = () => {
         {/* Logo - Smooth scroll to top */}
         <div 
           className="cursor-pointer z-50 group"
-          onClick={() => scrollToSection('#')}
+          onClick={() => handleNavClick({ name: 'Home', href: '#' })}
         >
           <span className="font-heading font-bold text-2xl tracking-tighter text-white inline-block transform group-hover:scale-110 transition-transform duration-300">
             PK<span className="text-secondary_accent">.</span>
@@ -58,11 +64,11 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <button
               key={link.name}
-              onClick={() => scrollToSection(link.href)}
+              onClick={() => handleNavClick(link)}
               className="text-xs uppercase tracking-widest font-medium text-gray-400 hover:text-white transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[1px] after:bottom-[-4px] after:left-0 after:bg-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
             >
               {link.name}
@@ -91,7 +97,7 @@ const Navbar: React.FC = () => {
             {NAV_LINKS.map((link) => (
               <button
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => handleNavClick(link)}
                 className="text-2xl font-heading font-light text-white hover:text-gray-400 transition-colors"
               >
                 {link.name}

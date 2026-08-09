@@ -1,6 +1,7 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FileText } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,6 +44,17 @@ const About: React.FC = () => {
               <p>
                 My stack centers on Python, TypeScript, GitHub Actions, Supabase, and orchestrating AI APIs across Gemini, Groq, and OpenRouter. I'm currently looking for internship and entry-level opportunities where I can keep building real systems, not just toy projects.
               </p>
+              
+              <div className="pt-2">
+                <a 
+                  href="/img/resume.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-medium hover:bg-cyan-500/20 hover:border-cyan-400 transition-all hover:scale-105 active:scale-95 text-sm"
+                >
+                  <FileText size={16} /> View Full Resume (PDF)
+                </a>
+              </div>
             </div>
             
             <div className="md:col-span-2 about-content">

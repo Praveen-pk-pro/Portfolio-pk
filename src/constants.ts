@@ -1,11 +1,12 @@
-import { Achievement, ExperienceItem, Project, SkillCategory } from "./types";
+import { Achievement, ExperienceItem, NavLink, Project, SkillCategory } from "./types";
 
-export const NAV_LINKS = [
+export const NAV_LINKS: NavLink[] = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
   { name: "Achievements", href: "#achievements" },
+  { name: "Resume", href: "/img/resume.pdf", isExternal: true },
   { name: "Contact", href: "#contact" },
 ];
 
