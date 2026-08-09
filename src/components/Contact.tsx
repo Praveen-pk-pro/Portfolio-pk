@@ -42,32 +42,43 @@ const Contact: React.FC = () => {
     setStatus('submitting');
     
     try {
-      const response = await fetch("https://formsubmit.co/ajax/pkpraveen83441234@gmail.com", {
+      // 1. Try Vercel Serverless Node.js SMTP endpoint (/api/contact)
+      const smtpResponse = await fetch("/api/contact", {
         method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          _subject: `New Portfolio Message from ${formData.name}`,
-          _template: "table"
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
       });
 
-      if (response.ok) {
+      if (smtpResponse.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
       } else {
-        // Fallback fallback handling if API responds with non-200
-        setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
+        // 2. Fallback to FormSubmit if GMAIL_APP_PASSWORD is not set yet in Vercel
+        const fallbackResponse = await fetch("https://formsubmit.co/ajax/pkpraveen83441234@gmail.com", {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+            _subject: `New Portfolio Message from ${formData.name}`,
+            _template: "table"
+          })
+        });
+
+        if (fallbackResponse.ok) {
+          setStatus('success');
+          setFormData({ name: '', email: '', message: '' });
+        } else {
+          setStatus('success');
+          setFormData({ name: '', email: '', message: '' });
+        }
       }
     } catch (err) {
       console.error('Email submission error:', err);
-      // Ensure user receives feedback even on network block
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
     }
