@@ -119,7 +119,7 @@ export const SKILLS: SkillCategory[] = [
   },
   {
     title: "Tools & Platforms",
-    skills: ["Git & GitHub", "AWS Cloud", "MySQL", "Docker"]
+    skills: ["Git & GitHub", "AWS Cloud", "MySQL"]
   }
 ];
 
