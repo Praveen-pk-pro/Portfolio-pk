@@ -115,7 +115,7 @@ export const SKILLS: SkillCategory[] = [
   },
   {
     title: "Web & Backend",
-    skills: ["Next.js", "FastAPI", "Supabase (RLS & Auth)", "Qdrant Cloud", "Razorpay"]
+    skills: ["Node.js", "Supabase (RLS & Auth)-Data base", "Razorpay"]
   },
   {
     title: "Tools & Platforms",
