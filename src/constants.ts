@@ -114,7 +114,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "23 July 2025",
     description: "Participated in Round 1 of the National Level ECLearnix Hackathon 360° Innovation Challenge, showcasing problem-solving and innovation under time pressure. (Certificate lists Gmail display name 'pk Status tamil'.)",
     type: "Hackathon",
-    image: "/img/eclearnix.png"
+    image: "/img/eclearnix.pdf"
   },
   {
     id: 6,
@@ -123,7 +123,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "19 May 2025",
     description: "Completed the C training test organized at Sree Sakthi Engineering College with course material from the Spoken Tutorial Project, IIT Bombay. Score: 90%.",
     type: "Certificate",
-    image: "/img/c-training.png"
+    image: "/img/c-training.pdf"
   },
   {
     id: 7,
@@ -132,7 +132,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "19 May 2025",
     description: "Completed the C++ training test organized at Sree Sakthi Engineering College with course material from the Spoken Tutorial Project, IIT Bombay. Score: 80%.",
     type: "Certificate",
-    image: "/img/cpp-training.png"
+    image: "/img/cpp-training.pdf"
   },
   {
     id: 8,
@@ -141,7 +141,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "21–22 March 2026",
     description: "Attended a two-day webinar on Blockchain, delivered by Gateway Software Solutions (HPE delivery partner), ISO 9001:2015 accredited.",
     type: "Certificate",
-    image: "/img/blockchain-webinar.png"
+    image: "/img/blockchain-webinar.pdf"
   },
   {
     id: 9,
@@ -150,7 +150,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "19 Feb 2026",
     description: "Participated in Bug Battle, a competitive debugging event held under CTECH '26 by the Department of Computer Technology, Hindusthan College of Arts & Science.",
     type: "Hackathon",
-    image: "/img/bug-battle.png"
+    image: "/img/bug-battle.pdf"
   },
   {
     id: 10,
@@ -159,7 +159,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "16 May 2025",
     description: "Attended the Industry Expert Talk 'Energy Science & Technology – Battery Revolution' by Dr. M. V. Reddy (Nouveau Monde Graphite Industry, Quebec, Canada), Division of Physical Sciences, Karunya Deemed University.",
     type: "Certificate",
-    image: "/img/battery-talk.png"
+    image: "/img/battery-talk.pdf"
   },
   {
     id: 11,
@@ -168,7 +168,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "23 Aug 2025",
     description: "Participated in the 'Build the Bridge KT' knowledge-transfer session for B.Tech IT (II year), organized by the Department of Emerging Technologies.",
     type: "Workshop",
-    image: "/img/build-bridge-kt.png"
+    image: "/img/build-bridge-kt.pdf"
   }
 ];
 
