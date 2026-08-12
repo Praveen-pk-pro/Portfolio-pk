@@ -70,59 +70,6 @@ export const PROJECTS: Project[] = [
   }
 ];
 
-export const EXPERIENCE: ExperienceItem[] = [
-  {
-    id: 1,
-    role: "Freelance Web Developer",
-    company: "Independent",
-    period: "2025 - Present",
-    description: "Designing and shipping production  full-stack web apps for clients — ortfolio websites , and Supabase-backed web tools — end to end, from architecture to deployment."
-  },
-  {
-    id: 2,
-    role: "Industrial Training — Python for ML",
-    company: "Botroid Tech",
-    period: "June 2026",
-    description: "Completed a hands-on industrial training program in Python for machine learning and related software tooling for real-world applications.",
-    certificate: "/img/botroid.png"
-  },
-  {
-    id: 3,
-    role: "Value-Added Courses — AWS Cloud",
-    company: "VEI Technologies (Sree Sakthi Engineering College)",
-    period: "2025 - 2026",
-    description: "Completed structured, hands-on training programs covering AWS cloud fundamentals.",
-    certificate: "/img/aws.png"
-  },
-  {
-    id: 4,
-    role: "Value-Added Courses — MEAN Stack",
-    company: "VEI Technologies (Sree Sakthi Engineering College)",
-    period: "2025 - 2026",
-    description: "Completed structured, hands-on training programs covering MEAN stack web development.",
-    certificate: "/img/mean.png"
-  }
-];
-
-export const SKILLS: SkillCategory[] = [
-  {
-    title: "Languages",
-    skills: ["Python", "Java", "TypeScript", "JavaScript", "C", "SQL"]
-  },
-  {
-    title: "AI & Automation",
-    skills: ["RAG Pipelines", "Prompt Engineering", "Gemini", "Groq", "OpenRouter", "n8n", "GitHub Actions"]
-  },
-  {
-    title: "Web & Backend",
-    skills: ["Node.js", "Supabase (RLS & Auth)-Data base", "Razorpay"]
-  },
-  {
-    title: "Tools & Platforms",
-    skills: ["Git & GitHub", "AWS Cloud", "MySQL"]
-  }
-];
-
 export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 1,
@@ -159,5 +106,89 @@ export const ACHIEVEMENTS: Achievement[] = [
     description: "Participated in a 24-hour national-level innovation challenge developing creative technical solutions under pressure.",
     type: "Hackathon",
     image: "/img/hackathonrgu.png"
+  },
+  {
+    id: 5,
+    title: "ECLearnix Hackathon 360° — Round 1",
+    issuer: "ECLearnix",
+    date: "23 July 2025",
+    description: "Participated in Round 1 of the National Level ECLearnix Hackathon 360° Innovation Challenge, showcasing problem-solving and innovation under time pressure. (Certificate lists Gmail display name 'pk Status tamil'.)",
+    type: "Hackathon",
+    image: "/img/eclearnix.png"
+  },
+  {
+    id: 6,
+    title: "C Programming — Spoken Tutorial, IIT Bombay",
+    issuer: "Spoken Tutorial Project, IIT Bombay",
+    date: "19 May 2025",
+    description: "Completed the C training test organized at Sree Sakthi Engineering College with course material from the Spoken Tutorial Project, IIT Bombay. Score: 90%.",
+    type: "Certificate",
+    image: "/img/c-training.png"
+  },
+  {
+    id: 7,
+    title: "C++ Programming — Spoken Tutorial, IIT Bombay",
+    issuer: "Spoken Tutorial Project, IIT Bombay",
+    date: "19 May 2025",
+    description: "Completed the C++ training test organized at Sree Sakthi Engineering College with course material from the Spoken Tutorial Project, IIT Bombay. Score: 80%.",
+    type: "Certificate",
+    image: "/img/cpp-training.png"
+  },
+  {
+    id: 8,
+    title: "Blockchain Webinar",
+    issuer: "Gateway Software Solutions",
+    date: "21–22 March 2026",
+    description: "Attended a two-day webinar on Blockchain, delivered by Gateway Software Solutions (HPE delivery partner), ISO 9001:2015 accredited.",
+    type: "Certificate",
+    image: "/img/blockchain-webinar.png"
+  },
+  {
+    id: 9,
+    title: "Bug Battle — CTECH '26",
+    issuer: "Hindusthan College of Arts & Science",
+    date: "19 Feb 2026",
+    description: "Participated in Bug Battle, a competitive debugging event held under CTECH '26 by the Department of Computer Technology, Hindusthan College of Arts & Science.",
+    type: "Hackathon",
+    image: "/img/bug-battle.png"
+  },
+  {
+    id: 10,
+    title: "Industry Expert Talk — Battery Revolution",
+    issuer: "Karunya Deemed University",
+    date: "16 May 2025",
+    description: "Attended the Industry Expert Talk 'Energy Science & Technology – Battery Revolution' by Dr. M. V. Reddy (Nouveau Monde Graphite Industry, Quebec, Canada), Division of Physical Sciences, Karunya Deemed University.",
+    type: "Certificate",
+    image: "/img/battery-talk.png"
+  },
+  {
+    id: 11,
+    title: "Build the Bridge KT",
+    issuer: "Dept. of Emerging Technologies, Sree Sakthi Engineering College",
+    date: "23 Aug 2025",
+    description: "Participated in the 'Build the Bridge KT' knowledge-transfer session for B.Tech IT (II year), organized by the Department of Emerging Technologies.",
+    type: "Workshop",
+    image: "/img/build-bridge-kt.png"
   }
 ];
+
+export const SKILLS: SkillCategory[] = [
+  {
+    title: "Languages",
+    skills: ["Python", "Java", "TypeScript", "JavaScript", "C", "SQL"]
+  },
+  {
+    title: "AI & Automation",
+    skills: ["RAG Pipelines", "Prompt Engineering", "Gemini", "Groq", "OpenRouter", "n8n", "GitHub Actions"]
+  },
+  {
+    title: "Web & Backend",
+    skills: ["Node.js", "Supabase (RLS & Auth)-Data base", "Razorpay"]
+  },
+  {
+    title: "Tools & Platforms",
+    skills: ["Git & GitHub", "AWS Cloud", "MySQL"]
+  }
+];
+
+-
