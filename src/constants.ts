@@ -70,6 +70,40 @@ export const PROJECTS: Project[] = [
   }
 ];
 
+export const EXPERIENCE: ExperienceItem[] = [
+  {
+    id: 1,
+    role: "Freelance Web Developer",
+    company: "Independent",
+    period: "2025 - Present",
+    description: "Designing and shipping production  full-stack web apps for clients — ortfolio websites , and Supabase-backed web tools — end to end, from architecture to deployment."
+  },
+  {
+    id: 2,
+    role: "Industrial Training — Python for ML",
+    company: "Botroid Tech",
+    period: "June 2026",
+    description: "Completed a hands-on industrial training program in Python for machine learning and related software tooling for real-world applications.",
+    certificate: "/img/botroid.png"
+  },
+  {
+    id: 3,
+    role: "Value-Added Courses — AWS Cloud",
+    company: "VEI Technologies (Sree Sakthi Engineering College)",
+    period: "2025 - 2026",
+    description: "Completed structured, hands-on training programs covering AWS cloud fundamentals.",
+    certificate: "/img/aws.png"
+  },
+  {
+    id: 4,
+    role: "Value-Added Courses — MEAN Stack",
+    company: "VEI Technologies (Sree Sakthi Engineering College)",
+    period: "2025 - 2026",
+    description: "Completed structured, hands-on training programs covering MEAN stack web development.",
+    certificate: "/img/mean.png"
+  }
+];
+
 export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 1,
@@ -190,5 +224,3 @@ export const SKILLS: SkillCategory[] = [
     skills: ["Git & GitHub", "AWS Cloud", "MySQL"]
   }
 ];
-
--

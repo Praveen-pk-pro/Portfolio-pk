@@ -136,23 +136,31 @@ const Experience: React.FC = () => {
                 </button>
               </div>
 
-              <div className="relative rounded-lg overflow-hidden bg-black/50 flex items-center justify-center min-h-[250px] max-h-[70vh]">
-                <img
-                  src={activeCert.certificate || activeCert.image}
-                  alt={activeCert.role}
-                  className="max-h-[65vh] w-auto object-contain rounded"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent && !parent.querySelector('.fallback-msg')) {
-                      const msg = document.createElement('div');
-                      msg.className = 'fallback-msg text-center p-8 text-gray-400 font-mono text-sm';
-                      msg.innerHTML = `<p class="mb-2 text-accent">📷 Certificate Image Placeholder</p><p class="text-xs text-gray-500">Drop file <strong>${activeCert.certificate || activeCert.image}</strong> into the <code>public/img/</code> folder to display it here.</p>`;
-                      parent.appendChild(msg);
-                    }
-                  }}
-                />
+              <div className="relative rounded-lg overflow-hidden bg-black/50 flex items-center justify-center min-h-[250px] h-[65vh] w-full max-h-[70vh]">
+                {(activeCert.certificate || activeCert.image)?.toLowerCase().endsWith('.pdf') ? (
+                  <iframe
+                    src={activeCert.certificate || activeCert.image}
+                    title={activeCert.role}
+                    className="w-full h-full rounded"
+                  />
+                ) : (
+                  <img
+                    src={activeCert.certificate || activeCert.image}
+                    alt={activeCert.role}
+                    className="max-h-[65vh] w-auto object-contain rounded"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent && !parent.querySelector('.fallback-msg')) {
+                        const msg = document.createElement('div');
+                        msg.className = 'fallback-msg text-center p-8 text-gray-400 font-mono text-sm';
+                        msg.innerHTML = `<p class="mb-2 text-accent">📷 Image Placeholder</p><p class="text-xs text-gray-500">Missing image file: <strong>${activeCert.certificate || activeCert.image}</strong></p>`;
+                        parent.appendChild(msg);
+                      }
+                    }}
+                  />
+                )}
               </div>
             </MotionDiv>
           </MotionDiv>
