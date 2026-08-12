@@ -175,7 +175,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "21–22 March 2026",
     description: "Attended a two-day webinar on Blockchain, delivered by Gateway Software Solutions (HPE delivery partner), ISO 9001:2015 accredited.",
     type: "Certificate",
-    image: "/img/blockchain-webinar.pdf"
+    image: "/img/blockchain-webinar.png"
   },
   {
     id: 9,

@@ -19,7 +19,12 @@ const getAchievementIcon = (type: string) => {
 
 const Testimonials: React.FC = () => {
   const [activeItem, setActiveItem] = useState<Achievement | null>(null);
+  const [filter, setFilter] = useState<string>('All');
   const MotionDiv = motion.div as any;
+
+  const filteredAchievements = ACHIEVEMENTS.filter(item => 
+    filter === 'All' ? true : item.type === filter
+  );
 
   return (
     <section id="achievements" className="py-24 bg-dark relative overflow-hidden">
@@ -40,16 +45,40 @@ const Testimonials: React.FC = () => {
             </p>
           </MotionDiv>
 
-          <div className="grid sm:grid-cols-2 gap-8">
-            {ACHIEVEMENTS.map((item, idx) => (
-              <MotionDiv
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.15 }}
-                className="bg-card p-8 rounded-2xl border border-white/5 hover:border-accent/30 transition-all hover:-translate-y-1 group relative flex flex-col justify-between"
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-wrap justify-center gap-3 mb-12"
+          >
+            {['All', 'Certificate', 'Hackathon', 'Award', 'Workshop'].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-mono transition-all ${
+                  filter === cat
+                    ? 'bg-accent text-dark font-bold'
+                    : 'bg-white/5 text-gray-400 border border-white/10 hover:border-accent/50 hover:text-white'
+                }`}
               >
+                {cat}
+              </button>
+            ))}
+          </MotionDiv>
+
+          <div className="grid sm:grid-cols-2 gap-8">
+            <AnimatePresence mode="popLayout">
+              {filteredAchievements.map((item, idx) => (
+                <MotionDiv
+                  layout
+                  key={item.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-card p-8 rounded-2xl border border-white/5 hover:border-accent/30 transition-all hover:-translate-y-1 group relative flex flex-col justify-between"
+                >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-3 bg-white/5 rounded-xl border border-white/10 group-hover:bg-accent/10 group-hover:border-accent/30 transition-colors">
@@ -85,6 +114,7 @@ const Testimonials: React.FC = () => {
                 )}
               </MotionDiv>
             ))}
+            </AnimatePresence>
           </div>
         </div>
       </div>
